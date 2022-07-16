@@ -1,0 +1,66 @@
+#logIn{
+    background-color: lightblue;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 200px;
+    width: 800px;
+    padding: 30px 300px 30px 300px;
+    align-items: center;
+    border-radius: 10px;
+}
+.error{
+    color: rgba(139, 0, 0, 0.51);
+    font-size: 12px;
+
+}
+#link_login{
+    width: max-content;
+    display: block;
+    margin-left: auto;
+    padding-top: 20px;
+    color: rgba(78, 78, 78, 0.7);
+    border-top: 1px rgba(79, 79, 79, 0.32) solid;
+    margin-top: 30px;
+    margin-right: auto;
+}
+#baslik{
+    color: black;
+    text-align: center;
+    font-size: 40px;
+    margin-bottom: 30px;
+    font-family: "brand-icons", serif;
+
+
+}
+#title_login{
+    text-align: center;
+    font-family: "Bitstream Charter", serif;
+    border-bottom: 1px solid rgb(140, 140, 140);
+    margin-bottom: 20px;
+}
+input{
+    display: flex;
+    border: 1px rgba(79, 79, 79, 0.39) solid;
+    border-radius: 1px;
+    align-items: center;
+    padding: 4px 10px 4px 10px;
+    margin-bottom: 10px;
+    justify-content: center;
+}
+.btn_submit{
+    display: block;
+    margin-top: 20px;
+    margin-left: auto;
+    width: inherit;
+    padding: 4px 10px 4px 10px;
+    color: #eeeeee;
+    font-size: 15px;
+    font-style: initial;
+    border-radius: 8px;
+    background-color: green;
+    border : 1px solid rgba(246, 231, 165, 0.62);
+    margin-right: auto;
+
+}

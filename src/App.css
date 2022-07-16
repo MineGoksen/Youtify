@@ -1,0 +1,10 @@
+.image-placeholder {
+
+  align-self: end;
+  /*text-align: end;*/
+
+}
+.placeholder-item {
+  margin: 12px 12px 12px 22px;
+  padding: 2px;
+}
