@@ -2,9 +2,11 @@ import React from 'react';
 import {Formik} from "formik";
 import {Link} from "react-router-dom";
 import SignInValidation from "./signUpValidation";
+import './signUpPage.css'
 
 class SignUpPage extends React.Component {
     render() {
+        document.body.style.backgroundColor = "gray";
         const formik = {
             initialValues: {
                 firstName: "",
@@ -19,11 +21,13 @@ class SignUpPage extends React.Component {
         return (
             <div>
                 <div className="card " id={"signUp"}>
-                    <h3 id="title_login">TO DO LIST</h3>
+                    <br/>
+                    <div id="baslik">SIGN UP YOUTIFY</div>
                     <Formik {...formik} >
                         {formik =>
-                            (<form onSubmit={formik.handleSubmit} className="container">
-                                <input className="row"
+                            (<form onSubmit={formik.handleSubmit} >
+                                <label htmlFor="fname">First Name</label>
+                                <input
                                        name="firstName"
                                        type="text"
                                        type="text"
@@ -33,7 +37,8 @@ class SignUpPage extends React.Component {
                                        placeholder="firstName"/>
                                 {formik.errors.firstName && formik.touched.firstName&&
                                     (<div className={"error"}>{formik.errors.firstName}</div>)}
-                                <input className="row"
+                                <label htmlFor="lname">Last Name</label>
+                                <input
                                        onChange={formik.handleChange}
                                        onBlur={formik.handleBlur}
                                        value={formik.values.lastName}
@@ -42,7 +47,8 @@ class SignUpPage extends React.Component {
                                        type="text"/>
                                 {formik.errors.lastName &&formik.touched.lastName&&
                                     (<div className={"error"}>{formik.errors.lastName}</div>)}
-                                <input className="row"
+                                <label htmlFor="userName">User Name</label>
+                                <input
                                        name="userName"
                                        onChange={formik.handleChange}
                                        onBlur={formik.handleBlur}
@@ -51,7 +57,8 @@ class SignUpPage extends React.Component {
                                        type="text"/>
                                 {formik.errors.userName &&formik.touched.userName&&
                                     (<div className={"error"}>{formik.errors.userName}</div>)}
-                                <input className="row"
+                                <label htmlFor="email">Email Address</label>
+                                <input
                                        name="email"
                                        onChange={formik.handleChange}
                                        onBlur={formik.handleBlur}
@@ -60,7 +67,8 @@ class SignUpPage extends React.Component {
                                        type="email"/>
                                 {formik.errors.email &&formik.touched.email&&
                                     (<div className={"error"}>{formik.errors.email}</div>)}
-                                <input className="row"
+                                <label htmlFor="password">Password</label>
+                                <input
                                        name="password"
                                        onChange={formik.handleChange}
                                        onBlur={formik.handleBlur}

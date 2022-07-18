@@ -6,7 +6,7 @@ import loginSchema from "./LoginValidations";
 
 function LoginPage() {
     const uid = ""
-
+    document.body.style.backgroundColor = "gray";
     const handleLogin = () => {
 
     }
@@ -16,10 +16,18 @@ function LoginPage() {
             email: "",
             password: ""
         }, onSubmit: values => {
+            console.log("here")
+            if( values.email==="admin@admin.com"&&values.password==="adminadmin"){
+                localStorage.setItem("uid", 191104090)
+                window.location.href = '/mainPage'
+            }else{
+                const errorMessage="Girdiğiniz Şifre veya email Hatalıdır"
+                window.alert(errorMessage)
+                console.log( errorMessage)
+            }
             console.log(JSON.stringify(values, null, 2))
         }, validationSchema: loginSchema
     }
-
 
     return (
         <div className="card " id={"logIn"}>
@@ -35,13 +43,17 @@ function LoginPage() {
                             type="email"
                             onChange={formik.handleChange}
                             value={formik.values.email}/>
+                        {formik.errors.email &&formik.touched.email&&
+                            (<div className={"error"}>{formik.errors.email}</div>)}
                         <label htmlFor="password">Password</label>
                         <input
                             name="password"
-                            placeholder="*********"
+                            placeholder="***"
                             type="password"
                             onChange={formik.handleChange}
                             value={formik.values.password}/>
+                        { formik.errors.password &&formik.touched.password&&
+                            (<div className={"error"}>{formik.errors.password}</div>)}
                         <button className={"btn_submit"} type="submit" onSubmit={() => formik.handleSubmit()}>Submit
                         </button>
                     </form>)}
