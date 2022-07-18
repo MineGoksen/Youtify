@@ -8,7 +8,6 @@ function LoginPage() {
     const uid = ""
     document.body.style.backgroundColor = "gray";
     const handleLogin = () => {
-
     }
 
     const formik = {
