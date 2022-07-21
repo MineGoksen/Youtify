@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import {Formik} from "formik";
 import './loginPage.css'
 import loginSchema from "./LoginValidations";
+import axios from "axios";
 
 function LoginPage() {
     const uid = ""
@@ -15,7 +16,23 @@ function LoginPage() {
             email: "",
             password: ""
         }, onSubmit: values => {
-            console.log("here")
+            if (values.email !== null && values.password !== null) {
+                const userData = {email: values.email, password: values.password};
+                axios.post('url/login', userData).then(response => {
+                    if (response.status === 200) {
+                        localStorage.setItem('id', JSON.stringify(response.data.id))
+                        window.location.href = '/mainPage'
+                    } else {
+                        window.alert(response.data.message)
+                        console.log(response.status, response.data.message)
+                    }
+                }).catch(error => {
+                    console.error('There was an error!', error);
+                    window.alert("Girdiğiniz Şifre veya email Hatalıdır")
+                });
+            }
+
+            /*console.log("here")
             if( values.email==="admin@admin.com"&&values.password==="adminadmin"){
                 localStorage.setItem("uid", 191104090)
                 window.location.href = '/mainPage'
@@ -24,7 +41,7 @@ function LoginPage() {
                 window.alert(errorMessage)
                 console.log( errorMessage)
             }
-            console.log(JSON.stringify(values, null, 2))
+            console.log(JSON.stringify(values, null, 2))*/
         }, validationSchema: loginSchema
     }
 
@@ -42,16 +59,16 @@ function LoginPage() {
                             type="email"
                             onChange={formik.handleChange}
                             value={formik.values.email}/>
-                        {formik.errors.email &&formik.touched.email&&
+                        {formik.errors.email && formik.touched.email &&
                             (<div className={"error"}>{formik.errors.email}</div>)}
                         <label htmlFor="password">Password</label>
                         <input
                             name="password"
-                            placeholder="***"
+                            placeholder="*******"
                             type="password"
                             onChange={formik.handleChange}
                             value={formik.values.password}/>
-                        { formik.errors.password &&formik.touched.password&&
+                        {formik.errors.password && formik.touched.password &&
                             (<div className={"error"}>{formik.errors.password}</div>)}
                         <button className={"btn_submit"} type="submit" onSubmit={() => formik.handleSubmit()}>Submit
                         </button>

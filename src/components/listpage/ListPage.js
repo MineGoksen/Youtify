@@ -29,7 +29,9 @@ function ListPage(props) {
                         {path.map((element, index) =>
                             <div id="parent2" style={{margin: "10px"}} key={index}>
                                 <div  className="child">{index+1}.    {element}</div>
-                                <div  className="child"><audio controls src={require("./Sor.mp3")}/></div>
+                                <div  className="child"><audio controls>
+                                    <source src="https://ia801007.us.archive.org/15/items/MattGetsBlue/01MensLiberation.mp3" />
+                                </audio></div>
                             </div>)
                         }
                     </div>
