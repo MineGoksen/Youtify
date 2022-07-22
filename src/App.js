@@ -4,7 +4,7 @@ import LoginPage from "./components/login/loginPage";
 import {BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import SignUpPage from "./components/signUp/signUpPage";
 import MainPage from "./components/mainPage/MainPage";
-import {MusicDetailsPage} from "./components/musicDetailsPage/MusicDetailsPage";
+import CommentPage from "./components/CommentPage/CommentPage";
 import ListPage from "./components/listpage/ListPage";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
                         <Routes>
                             <Route path="/signUp" element={<SignUpPage/>}/>
                             <Route path="/mainPage" element={<MainPage/>}/>
-                            <Route exact path="/MusicPage" element={<MusicDetailsPage/>}/>
+                            <Route exact path="/CommentPage/:song_name" element={<CommentPage/>}/>
                             <Route exact path="/listPage/:listId" element={<ListPage/>}/>
                             <Route exact path="/" element={<LoginPage/>}/>
                         </Routes>

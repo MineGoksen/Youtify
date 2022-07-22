@@ -23,9 +23,10 @@ class SignUpPage extends React.Component {
                         first_name: values.firstName, last_name: values.lastName,
                         email: values.email, user_name: values.userName, password: values.password
                     };
-                    axios.post('localhost/signUp', userData).then(response => {
+                    axios.post('http://127.0.0.1:8000/userAdd', userData).then(response => {
                         console.log(response, "here")
                         if (response.status === 200) {
+                            window.alert("Basari ile kayit oldunuz. Simdi giris yapabilirsiniz.")
                             window.location.href = '/'
                         } else {
                             window.alert(response.data.message)
