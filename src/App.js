@@ -16,7 +16,7 @@ function App() {
                         <Routes>
                             <Route path="/signUp" element={<SignUpPage/>}/>
                             <Route path="/mainPage" element={<MainPage/>}/>
-                            <Route exact path="/CommentPage/:song_name" element={<CommentPage/>}/>
+                            <Route exact path="/CommentPage/:song_id" element={<CommentPage/>}/>
                             <Route exact path="/listPage/:listId" element={<ListPage/>}/>
                             <Route exact path="/" element={<LoginPage/>}/>
                         </Routes>

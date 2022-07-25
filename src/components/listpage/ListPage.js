@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {MusicItem} from "../musicItem/MusicItem";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import "./ListPage.css"
 import ReactPlayer from "react-player";
 
@@ -23,24 +23,26 @@ function ListPage(props) {
                     <p>YOUTIFY</p>
                 </div>
 
-                <div id="parent">
-                    <div className="child"><ReactPlayer url={url} width={"300px"} height={"inherit"} playing={playing} onPlay={()=>setPlaying(true)}
+                <div id="parentt">
+                    <div className="childd"><ReactPlayer url={url} width={"300px"} height={"inherit"} playing={playing} onPlay={()=>setPlaying(true)}
                                                         on/></div>
-                    <div className="child">PLAYLIST<h1> {listId}</h1></div>
+                    <div className="childd">PLAYLIST<h1> {listId}</h1></div>
 
                 </div>
                 <div style={{display: "flex"}}>
 
                     <div>
                         {path.map((element, index) =>
-                            <div id="parent2" style={{margin: "10px"}} key={index}>
-                                <div className="card" style={{padding:"20px"}} onClick={() => setUrl(urls[index])}>{index + 1}. {element}</div>
-
+                            <div id="parent2" style={{margin: "10px", display:"flex",border:"solid 2px "}} key={index} >
+                                <div className="childd" style={{padding:"20px"}} onClick={() => setUrl(urls[index])}>{index + 1}. {element}</div>
+                                <div id="xyz" className="childd"><button className={"btn_submit"} type="submit" onClick={ () => 1 }> ...
+                                </button></div>
                             </div>)
                         }
                     </div>
 
                 </div>
+
             </>
         )
     }

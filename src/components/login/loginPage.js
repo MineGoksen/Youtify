@@ -20,7 +20,7 @@ function LoginPage() {
                 const userData = {email: values.email, password: values.password};
                 axios.post('http://127.0.0.1:8000/login', userData).then(response => {
                     if (response.status === 200) {
-                        localStorage.setItem('id', JSON.stringify(response.data.id))
+                        localStorage.setItem('id', JSON.stringify(response.data.id[0].id))
                         window.location.href = '/mainPage'
                     } else {
                         window.alert(response.data.message)

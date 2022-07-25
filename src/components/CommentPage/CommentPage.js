@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import "./CommentPage.css"
 import {Formik} from "formik";
 import axios from "axios";
+import ReactPlayer from "react-player";
 
 
 function CommentPage(props) {
@@ -84,24 +85,33 @@ function CommentPage(props) {
 
         return (
             <>
-                <button><img src={require('./review.png')}
-                             alt="my image" width={"32px"} onClick={()=>like()} /></button> : {likeNum}
-                <Formik {...formik} >
-                    {formik =>
-                        (<form onSubmit={formik.handleSubmit} id="comment">
-                            <label htmlFor="comment">Enter Your Comment</label>
-                            <input
-                                id="space"
-                                type="text"
-                                name="comment"
-                                onChange={formik.handleChange}
-                                value={formik.values.comment}/>
-                            {formik.errors.comment && formik.touched.comment &&
-                                (<div className={"error"}>{formik.errors.comment}</div>)}
-                            <button className={"btn_submit"} type="submit" onSubmit={() => formik.handleSubmit()}>Submit
-                            </button>
-                        </form>)}
-                </Formik>
+                <div id="parentc">
+                    <div className="childc">
+                        <Formik {...formik} >
+                            {formik =>
+                                (<form onSubmit={formik.handleSubmit} id="comment">
+                                    <textarea
+                                        id="space"
+                                        type="text"
+                                        name="comment"
+                                        placeholder="Enter Your Comment"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.comment}/>
+                                    {formik.errors.comment && formik.touched.comment &&
+                                        (<div className={"error"}>{formik.errors.comment}</div>)}
+                                    <button id="buton" className={"btn_submit"} type="submit" onSubmit={() => formik.handleSubmit()}>
+                                        Submit
+                                    </button>
+                                </form>)}
+                        </Formik>
+                    </div>
+                    <div className="childc" style={{
+                        position: 'absolute', left: '55%', top: '15%',
+                        transform: 'translate(-50%, -50%)'
+                    }}> <button ><img src={require('./review.png')}
+                                                          alt="my image" width={"32px"} onClick={()=>like()}  /></button> : {likeNum}</div>
+
+                </div>
                 <div style={{display: "flex"}}>
                     <div>
                         {comments.length!==0?  (comments.map((element, index) =>

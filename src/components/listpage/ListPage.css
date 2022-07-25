@@ -1,14 +1,22 @@
-#parent {
+#parentt {
     background-color: lightblue;
 }
 #parent2 {
     background-color: whitesmoke;
+    width: 400px;
 }
 
-.child {
+#xyz {
+    background-color: whitesmoke;
+    width: 50px;
+    margin-left: 100px;
+}
+
+.childd {
     display: inline-block;
     width: 50%;
     height: 50%;
+    text-align: inherit;
 }
 
 #song {
