@@ -4,4 +4,17 @@
 
 #space {
     margin-bottom: 10px;
+    padding: 50px;
+    padding-left: 50px;
+}
+#parentc {
+    background-color: inherit;
+}
+#buton {
+    margin-left: 1px;
+}
+
+.childc {
+    display: inline-block;
+    width: 50%;
 }

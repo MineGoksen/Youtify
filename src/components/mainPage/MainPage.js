@@ -2,26 +2,21 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import './MainPage.css'
 import axios from "axios";
-import loginSchema from "../login/LoginValidations";
 import {Formik} from "formik";
-import ReactPlayer from "react-player";
-import ReactSearchBox from "react-search-box";
-
 
 
 function MainPage(props) {
     const id = localStorage.getItem('id')
-    const [lists,setLists]= useState([])
-    const [listAdded,setListAdded]= useState(false)
-    useEffect(()=>{
-        axios.get('http://127.0.0.1:8000/lists/'+id).then(response => {
+    const [lists, setLists] = useState([])
+    const [listAdded, setListAdded] = useState(false)
+    useEffect(() => {
+        axios.get('http://127.0.0.1:8000/lists/' + id).then(response => {
             if (response.status === 200) {
-                console.log(response.data[0][1])
-                var listNames=[]
+                var listNames = []
                 for (let i = 0; i < response.data[0].length; i++) {
-                    listNames[i]=([...lists,response.data[0][i].Name])
+                    listNames.push({name: response.data[0][i].Name, id: response.data[0][i].id})
                 }
-                setLists(listNames)
+                setLists([...listNames])
                 // window.location.href = '/listPage/:listId'
             } else {
                 window.alert(response.data.message)
@@ -32,9 +27,7 @@ function MainPage(props) {
             window.alert("Liste Oluşturulamadı.")
         });
     }, [listAdded])
-    function getLists(){
 
-    }
     function returnLists() {
         document.body.style.backgroundColor = "gray";
 
@@ -43,11 +36,11 @@ function MainPage(props) {
                 list_name: ""
             }, onSubmit: values => {
                 if (values.list_name !== null) {
-                    const userData = {list_name: values.list_name, user_id: id[7]};
+                    const userData = {list_name: values.list_name, user_id: id};
                     axios.post('http://127.0.0.1:8000/listAdd', userData).then(response => {
-                        console.log(response, "res")
                         if (response.status === 200) {
-                            setLists([...lists,values.list_name])
+                            setListAdded(!listAdded)
+                            values.list_name=""
                         } else {
                             window.alert(response.data.message)
                             console.log(response.status, response.data.message)
@@ -60,17 +53,32 @@ function MainPage(props) {
             },
         }
 
+        function deleteList(id) {
+            const data = {list_id:id};
+            axios.post('http://127.0.0.1:8000/listDelete',data).then(response => {
+                if (response.status === 200) {
+                    setListAdded(!listAdded)
+                } else {
+                    window.alert(response.data.message)
+                    console.log(response.status, response.data.message)
+                }
+            }).catch(error => {
+                console.error('There was an error!', error);
+                window.alert("Liste Oluşturulamadı.")
+            });
+        }
+
         return (
             <>
                 <div id={"userpart"}>
-                    <div id="parent">
-                        <div className="child"> YOUTIFY </div>
-                        <div className="child">
+                    <div id="parentt">
+                        <div className="childd"> YOUTIFY</div>
+                        <div className="childd">
                             <Formik {...formik} >
                                 {formik =>
                                     (<form id="search">
-                                       <input
-                                           placeholder="Search"
+                                        <input
+                                            placeholder="Search"
                                         />
                                     </form>)
                                 }
@@ -82,11 +90,11 @@ function MainPage(props) {
                     {formik =>
                         (<form onSubmit={formik.handleSubmit}>
                             <label htmlFor="Name"><b>Add List</b></label>
-                            <input id = {"form"}
-                                name="list_name"
-                                placeholder="ListName"
-                                onChange={formik.handleChange}
-                                value={formik.values.list_name}/>
+                            <input id={"form"}
+                                   name="list_name"
+                                   placeholder="ListName"
+                                   onChange={formik.handleChange}
+                                   value={formik.values.list_name}/>
                             {formik.errors.list_name && formik.touched.list_name &&
                                 (<div className={"error"}>{formik.errors.list_name}</div>)}
                             <button className={"btn_submit"} type="submit" onSubmit={() => formik.handleSubmit()}>Add
@@ -96,12 +104,16 @@ function MainPage(props) {
 
                 <div style={{display: "flex"}}>
                     <div>
-                        {lists.length!==0?  (lists.map((element, index) =>
-                            <div style={{margin: "10px"}} key={index}>
-                                <Link to={'/listPage/' + element}>
-                                    <div id={"abc"}>{element}</div>
+                        {lists.length !== 0 ? (lists.map((element, index) =>
+                            <div style={{margin: "10px",display:"flex"}} key={index}>
+                                <img src={require('./remove.png')}
+                                     alt="my image"
+                                     style={{border: "none", borderRadius: '10px', width: "20px",height:"20px", cursor: "pointer",margin:"6px"}}
+                                     onClick={() => deleteList(element.id)}/>
+                                <Link to={'/listPage/' + element.name}>
+                                    <div id={"abc"}>{element.name}</div>
                                 </Link>
-                            </div>)):<div/>
+                            </div>)) : <div/>
                         }
                     </div>
                 </div>
