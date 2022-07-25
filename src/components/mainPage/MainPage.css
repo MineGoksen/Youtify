@@ -26,11 +26,25 @@
     font-size: 20px;
     margin-bottom: 20px;
     font-family: "brand-icons", serif;
-    padding: inherit ;
     background-color: black;
     block-size: 40px;
     font-weight: bold;
 }
 
+#form{
+    margin-left: 555px;
+}
 
+#parent {
+    background-color: black;
+}
+.child {
+    background-color: black;
+    display: inline-block;
+}
+
+#search {
+    margin-left: 300px;
+    padding: 1px 1px 1px 1px;
+}
 

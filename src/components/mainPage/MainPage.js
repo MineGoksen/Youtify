@@ -4,6 +4,9 @@ import './MainPage.css'
 import axios from "axios";
 import loginSchema from "../login/LoginValidations";
 import {Formik} from "formik";
+import ReactPlayer from "react-player";
+import ReactSearchBox from "react-search-box";
+
 
 
 function MainPage(props) {
@@ -40,8 +43,7 @@ function MainPage(props) {
                 list_name: ""
             }, onSubmit: values => {
                 if (values.list_name !== null) {
-
-                    const userData = {list_name: values.list_name, user_id: id};
+                    const userData = {list_name: values.list_name, user_id: id[7]};
                     axios.post('http://127.0.0.1:8000/listAdd', userData).then(response => {
                         console.log(response, "res")
                         if (response.status === 200) {
@@ -61,14 +63,26 @@ function MainPage(props) {
         return (
             <>
                 <div id={"userpart"}>
-                    <i className="glyphicon glyphicon-user"></i>
-                    Username çekip yazacagız
+                    <div id="parent">
+                        <div className="child"> YOUTIFY </div>
+                        <div className="child">
+                            <Formik {...formik} >
+                                {formik =>
+                                    (<form id="search">
+                                       <input
+                                           placeholder="Search"
+                                        />
+                                    </form>)
+                                }
+                            </Formik>
+                        </div>
+                    </div>
                 </div>
                 <Formik {...formik} >
                     {formik =>
                         (<form onSubmit={formik.handleSubmit}>
-                            <label htmlFor="Name">Oluşturulacak Liste Adı</label>
-                            <input
+                            <label htmlFor="Name"><b>Add List</b></label>
+                            <input id = {"form"}
                                 name="list_name"
                                 placeholder="ListName"
                                 onChange={formik.handleChange}
