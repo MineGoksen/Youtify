@@ -35,10 +35,10 @@
     margin-left: 555px;
 }
 
-#parentt {
+#parent {
     background-color: black;
 }
-.childd {
+.child {
     background-color: black;
     display: inline-block;
 }

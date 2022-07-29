@@ -71,9 +71,9 @@ function MainPage(props) {
         return (
             <>
                 <div id={"userpart"}>
-                    <div id="parentt">
-                        <div className="childd"> YOUTIFY</div>
-                        <div className="childd">
+                    <div id="parent">
+                        <div className="child"> YOUTIFY</div>
+                        <div className="child">
                             <Formik {...formik} >
                                 {formik =>
                                     (<form id="search">
@@ -110,7 +110,7 @@ function MainPage(props) {
                                      alt="my image"
                                      style={{border: "none", borderRadius: '10px', width: "20px",height:"20px", cursor: "pointer",margin:"6px"}}
                                      onClick={() => deleteList(element.id)}/>
-                                <Link to={'/listPage/' + element.name}>
+                                <Link to={'/listPage/' + element.name+'/'+element.id}>
                                     <div id={"abc"}>{element.name}</div>
                                 </Link>
                             </div>)) : <div/>

@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react';
 import "./CommentPage.css"
 import {Formik} from "formik";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 
 function CommentPage(props) {
     document.body.style.backgroundColor = "gray";
     const id = localStorage.getItem('id');
-    const song_id = localStorage.getItem('song_id');
+    const song_id = useParams().songId
     const [comments,setComments]=useState([]);
     const [likeNum,setLikeNum]=useState(0);
-    const [liked,setLiked]=useState(1)
 
     const [commentAdded,setCommentAdded]= useState(false)
     useEffect(()=>{
@@ -43,11 +43,10 @@ function CommentPage(props) {
     }, [commentAdded])
 
     function like(){
-        const userData = {user_id: id, song_id: song_id};
+        const userData = {user_id: parseInt(id), song_id: song_id};
         axios.post('http://127.0.0.1:8000/song_like',userData).then(response => {
             if (response.status === 200) {
-                setLikeNum(likeNum+liked)
-                setLiked(liked*-1)
+                setCommentAdded(!commentAdded)
             } else {
                 window.alert(response.data.message)
                 console.log(response.status, response.data.message)
@@ -65,11 +64,10 @@ function CommentPage(props) {
                 comment: ""
             }, onSubmit: values => {
                 if (values.comment !== null) {
-                    const userData = {user_id: id, song_id: song_id};
+                    const userData = {user_id: id, song_id: song_id,comment:values.comment};
                     axios.post('http://127.0.0.1:8000/addComment', userData).then(response => {
                         if (response.status === 200) {
-                            window.alert(response.data.message)
-                            console.log(response.status, response.data.message)
+                            setCommentAdded(!commentAdded)
                         } else {
                             window.alert(response.data.message)
                             console.log(response.status, response.data.message)
@@ -116,7 +114,7 @@ function CommentPage(props) {
                         {comments.length!==0?  (comments.map((element, index) =>
                             <div style={{margin: "10px"}}  key={index}>
                                 {element[0].user}
-                                <div className='card'> {element[0].comment}   </div>
+                                <div className='card' style={{width:"640px" ,height:"80px"}}> {element[0].comment}   </div>
                             </div>)):<div/>
                         }
                     </div>

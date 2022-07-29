@@ -6,6 +6,7 @@ import SignUpPage from "./components/signUp/signUpPage";
 import MainPage from "./components/mainPage/MainPage";
 import CommentPage from "./components/CommentPage/CommentPage";
 import ListPage from "./components/listpage/ListPage";
+import MusicPage from "./components/musicPage/MusicPage";
 
 function App() {
     return (
@@ -16,8 +17,9 @@ function App() {
                         <Routes>
                             <Route path="/signUp" element={<SignUpPage/>}/>
                             <Route path="/mainPage" element={<MainPage/>}/>
-                            <Route exact path="/CommentPage/:song_name" element={<CommentPage/>}/>
-                            <Route exact path="/listPage/:listId" element={<ListPage/>}/>
+                            <Route exact path="/CommentPage/:songId" element={<CommentPage/>}/>
+                            <Route exact path="/listPage/:listName/:listId" element={<ListPage/>}/>
+                            <Route path="/musicPage" element={<MusicPage/>}/>
                             <Route exact path="/" element={<LoginPage/>}/>
                         </Routes>
                     </Router>
