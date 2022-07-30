@@ -4,7 +4,6 @@ import './MusicPage.css'
 import axios from "axios";
 import {Formik} from "formik";
 
-
 function musicPage(props) {
     /*useEffect(() => {
         axios.get('http://127.0.0.1:8000/search/').then(response => {
