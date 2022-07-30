@@ -6,7 +6,6 @@ import {Formik} from "formik";
 
 
 function musicPage(props) {
-    const [comments,setComments]=useState()
     /*useEffect(() => {
         axios.get('http://127.0.0.1:8000/search/').then(response => {
             if (response.status === 200) {
