@@ -4,7 +4,6 @@ import './MainPage.css'
 import axios from "axios";
 import {Formik} from "formik";
 
-
 function MainPage(props) {
     const id = localStorage.getItem('id')
     const [lists, setLists] = useState([])
