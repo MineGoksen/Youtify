@@ -46,7 +46,13 @@ class AdminPage extends React.Component {
             <div>
 
                 <div className="card " id={"addsong"}>
-                    <br/>
+                    <br/><button className={"btn_submit2"} type="submit"
+                                 onClick={() => {
+                                     localStorage.removeItem('id')
+                                     window.location.href = '/'
+                                 }}>
+                    <img style={{width:"40px" ,height:"40px"}} src={require("./logout.png")}/>
+                </button>
                     <div id="baslik">VERİTABANINA ŞARKI EKLE</div>
                     <Formik {...formik} >
                         {formik =>
