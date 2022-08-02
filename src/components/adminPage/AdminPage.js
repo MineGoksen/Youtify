@@ -1,6 +1,5 @@
 import React from 'react';
 import {Formik} from "formik";
-import {Link} from "react-router-dom";
 import './AdminPage.css'
 import axios from "axios";
 
