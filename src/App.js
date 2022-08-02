@@ -7,6 +7,7 @@ import MainPage from "./components/mainPage/MainPage";
 import CommentPage from "./components/CommentPage/CommentPage";
 import ListPage from "./components/listpage/ListPage";
 import MusicPage from "./components/musicPage/MusicPage";
+import AdminPage from "./components/adminPage/AdminPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                             <Route path="/mainPage" element={<MainPage/>}/>
                             <Route exact path="/CommentPage/:songId" element={<CommentPage/>}/>
                             <Route exact path="/listPage/:listName/:listId" element={<ListPage/>}/>
+                            <Route path="/adminPage" element={<AdminPage/>}/>
                             <Route path="/musicPage" element={<MusicPage/>}/>
                             <Route exact path="/" element={<LoginPage/>}/>
                         </Routes>

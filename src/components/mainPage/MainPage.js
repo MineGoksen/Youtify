@@ -9,7 +9,12 @@ function MainPage(props) {
     const id = localStorage.getItem('id')
     const [lists, setLists] = useState([])
     const [listAdded, setListAdded] = useState(false)
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
     useEffect(() => {
+        if (id===null) {
+            window.location.href = '/'
+        }
+        setIsLoggedIn(true)
         axios.get('http://127.0.0.1:8000/lists/' + id).then(response => {
             if (response.status === 200) {
                 var listNames = []
@@ -19,6 +24,8 @@ function MainPage(props) {
                 setLists([...listNames])
                 // window.location.href = '/listPage/:listId'
             } else {
+                localStorage.setItem('id',null)
+                window.location.href = '/'
                 window.alert(response.data.message)
                 console.log(response.status, response.data.message)
             }
@@ -64,7 +71,7 @@ function MainPage(props) {
                 }
             }).catch(error => {
                 console.error('There was an error!', error);
-                window.alert("Liste Oluşturulamadı.")
+                window.alert("List cannot be deleted.")
             });
         }
 
@@ -74,15 +81,18 @@ function MainPage(props) {
                     <div id="parent">
                         <div className="child"> YOUTIFY</div>
                         <div className="child">
-                            <Formik {...formik} >
-                                {formik =>
-                                    (<form id="search">
-                                        <input
-                                            placeholder="Search"
-                                        />
-                                    </form>)
-                                }
-                            </Formik>
+                            <button className={"btn_submitt"} type="submit"
+                                    onClick={() => window.location.href = '/musicPage/'}> Music Search/Add Page
+                            </button>
+                        </div>
+                        <div className="child">
+                            <button className={"btn_submit2"} type="submit"
+                                    onClick={() => {
+                                        localStorage.removeItem('id')
+                                        window.location.href = '/'
+                                    }}>
+                                <img style={{width:"40px" ,height:"40px"}} src={require("./logout.png")}/>
+                            </button>
                         </div>
                     </div>
                 </div>

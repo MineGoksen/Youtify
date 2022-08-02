@@ -14,6 +14,8 @@ function CommentPage(props) {
 
     const [commentAdded,setCommentAdded]= useState(false)
     useEffect(()=>{
+        if (id===null)
+            window.location.href = '/'
         axios.get('http://127.0.0.1:8000/getComment/'+song_id).then(response => {
             if (response.status === 200) {
                 var com=[]

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {Formik} from "formik";
 import './loginPage.css'
@@ -8,9 +8,13 @@ import axios from "axios";
 function LoginPage() {
     const uid = ""
     document.body.style.backgroundColor = "gray";
-    const handleLogin = () => {
-    }
-
+    const id = localStorage.getItem('id')
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    useEffect(()=>{
+        if (id!==null) {
+            window.location.href = '/MainPage'
+        }
+    }, [isLoggedIn])
     const formik = {
         initialValues: {
             email: "",

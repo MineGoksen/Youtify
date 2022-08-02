@@ -9,6 +9,7 @@ import axios from "axios";
 function ListPage(props) {
     const listName = useParams().listName
     const listId = useParams().listId
+    const id = localStorage.getItem('id');
 
     document.body.style.backgroundColor = "gray";
     const [url, setUrl] = useState("https://www.youtube.com/watch?v=xY0FShMyHEg");
@@ -22,6 +23,8 @@ function ListPage(props) {
     }
 
     useEffect(() => {
+        if (id===null)
+            window.location.href = '/'
         const postData = {list_id: listId};
         axios.post('http://127.0.0.1:8000/listSongs', postData).then(response => {
             setSongs(response.data[0])
