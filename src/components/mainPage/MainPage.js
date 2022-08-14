@@ -36,7 +36,6 @@ function MainPage(props) {
 
     function returnLists() {
         document.body.style.backgroundColor = "gray";
-
         const formik = {
             initialValues: {
                 list_name: ""
