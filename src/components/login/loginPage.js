@@ -6,7 +6,6 @@ import loginSchema from "./LoginValidations";
 import axios from "axios";
 
 function LoginPage() {
-    const uid = ""
     document.body.style.backgroundColor = "gray";
     const id = localStorage.getItem('id')
     const [isLoggedIn, setIsLoggedIn] = useState(false)
