@@ -18,10 +18,12 @@ function ListPage(props) {
 
 
     useEffect(() => {
-        if (id===null)
+        if (id === null)
             window.location.href = '/'
         const postData = {list_id: listId};
         axios.post('http://127.0.0.1:8000/listSongs', postData).then(response => {
+            if (response.data[0].length !== 0)
+                setUrl(response.data[0][0].url)
             setSongs(response.data[0])
             console.log(response.data)
         }).catch(error => {
@@ -40,9 +42,11 @@ function ListPage(props) {
                 </div>
 
                 <div id="parentt">
-                    <div className="childd"><ReactPlayer url={url} width={"300px"} height={"inherit"} playing={playing}
-                                                         onPlay={() => setPlaying(true)}
-                                                         on/></div>
+                    <div className="childd">
+                        {songs.length !== 0 &&
+                            <ReactPlayer url={url} width={"300px"} height={"inherit"} playing={playing}
+                                         onPlay={() => setPlaying(true)} on/>}
+                    </div>
                     <div className="childd">PLAYLIST<h1> {listName}</h1></div>
 
                 </div>
@@ -61,6 +65,7 @@ function ListPage(props) {
                                 </div>
                             </div>)
                         }
+                        {songs.length===0&& <div style={{fontSize:"28px", marginLeft:"300px",marginRight:"300px"}}>Bu listede Şarkı Bulunmamaktadır</div>}
                     </div>
 
                 </div>

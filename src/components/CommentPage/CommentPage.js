@@ -9,6 +9,7 @@ function CommentPage(props) {
     document.body.style.backgroundColor = "gray";
     const id = localStorage.getItem('id');
     const song_id = useParams().songId
+    const [song,setSong]=useState("");
     const [comments,setComments]=useState([]);
     const [likeNum,setLikeNum]=useState(0);
 
@@ -16,8 +17,20 @@ function CommentPage(props) {
     useEffect(()=>{
         if (id===null)
             window.location.href = '/'
+        axios.get('http://127.0.0.1:8000/songName/'+song_id).then(response => {
+            if (response.status === 200) {
+                setSong("\""+response.data[0].Name+"\" from \""+response.data[0].Artist_fname+" "+response.data[0].Artist_lname+"\"")
+            } else {
+                window.alert(response.data.message)
+                console.log(response.status, response.data.message)
+            }
+        }).catch(error => {
+            console.error('There was an error!', error);
+            window.alert("Liste Oluşturulamadı.")
+        });
         axios.get('http://127.0.0.1:8000/getComment/'+song_id).then(response => {
             if (response.status === 200) {
+                console.log(response.data[0])
                 var com=[]
                 for (let i = 0; i < response.data.length; i++) {
                     com[i]=([{comment:response.data[i].Comment_text, user:response.data[i].User_name}])
@@ -86,6 +99,7 @@ function CommentPage(props) {
             <>
                 <div id="parentc">
                     <div className="childc">
+                        <h3 style={{marginBottom:"20px",marginLeft:"30px"}}> {song}</h3>
                         <Formik {...formik} >
                             {formik =>
                                 (<form onSubmit={formik.handleSubmit} id="comment">
