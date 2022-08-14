@@ -15,6 +15,7 @@ function MainPage(props) {
         }
         setIsLoggedIn(true)
         axios.get('http://127.0.0.1:8000/lists/' + id).then(response => {
+            console.log(response,"ff")
             if (response.status === 200) {
                 var listNames = []
                 for (let i = 0; i < response.data[0].length; i++) {

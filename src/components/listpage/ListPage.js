@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {MusicItem} from "../musicItem/MusicItem";
 import {Link, useParams} from "react-router-dom";
 import "./ListPage.css"
 import ReactPlayer from "react-player";
@@ -15,12 +14,8 @@ function ListPage(props) {
     const [url, setUrl] = useState("https://www.youtube.com/watch?v=xY0FShMyHEg");
     const [playing, setPlaying] = useState(false);
     const [songsChanged, setSongsChanged] = useState(false);
-
     const [songs, setSongs] = useState([]);
 
-    function go_comments_page(song_id) {
-        return (<Link to={'/listPage/' + song_id}/>)
-    }
 
     useEffect(() => {
         if (id===null)
