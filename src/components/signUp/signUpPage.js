@@ -30,11 +30,14 @@ function SignUpPage() {
                     email: values.email, user_name: values.userName, password: values.password
                 };
                 axios.post('http://127.0.0.1:8000/userAdd', userData).then(response => {
-                    console.log(response, "here")
                     if (response.status === 200) {
                         window.alert("Basari ile kayit oldunuz. Simdi giris yapabilirsiniz.")
                         window.location.href = '/'
-                    } else {
+                    }else if(response.status === 210) {
+                        window.alert(response.data.message)
+                        console.log(response.status, response.data.message)
+                    }
+                    else {
                         window.alert(response.data.message)
                         console.log(response.status, response.data.message)
                     }

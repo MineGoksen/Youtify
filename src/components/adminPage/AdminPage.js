@@ -48,6 +48,7 @@ class AdminPage extends React.Component {
                     <br/><button className={"btn_submit2"} type="submit"
                                  onClick={() => {
                                      localStorage.removeItem('id')
+                                     localStorage.removeItem('manager')
                                      window.location.href = '/'
                                  }}>
                     <img style={{width:"40px" ,height:"40px"}} src={require("./logout.png")}/>
